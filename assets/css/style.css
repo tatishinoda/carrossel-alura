@@ -10,9 +10,9 @@
 }
 
 /* RESET */
-* {
-  margin: 0;
-  padding: 0;
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -24,10 +24,6 @@ img {
   display: block;
   max-width: 100%;
 }
-ul {
-  list-style: none;
-}
-
 /* GLOBAL STYLES */
 h2 {
   color: var(--dark-blue);
@@ -45,63 +41,85 @@ h5 {
 main {
   background: var(--white);
 }
-/* SLIDER */
-.slide-container {
-  background-color: var(--light-blue);
-  max-width: 1200px;
+.carousel {
+  position: relative;
   width: 100%;
-  padding: 6rem;
+  max-width: 1440px;
+  height: 100%;
   margin: 0 auto;
+  background-color: var(--light-blue);
+  padding: 3rem 0 4rem 8rem;
 }
+
 .slide-title {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1.875rem;
+  padding-right: 3rem;
 }
 .navigation {
   display: flex;
 }
 .navigation i {
   font-size: 2rem;
+  padding: 0 5px;
   color: var(--dark-blue);
 }
-.inner-slider {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  flex-wrap: nowrap;
-  overflow-x: hidden;
+.nav {
+  z-index: 2;
+  cursor: pointer;
+  border-radius: 50%;
+  border: none;
+  outline: none;
+  -webkit-user-select: none;
 }
 
-.card {
-  flex-shrink: 0;
-  width: 315px;
-  max-width: 25%;
+.carousel-content {
+  position: relative;
+  overflow: hidden;
+  transition: width 0.4s;
+  min-height: 300px;
+}
+
+.slide {
+  max-width: 315px;
   background: var(--white);
   border: 1px solid var(--grey);
   box-shadow: 4px 4px 20px rgba(120, 135, 182, 0.1);
   border-radius: 5px;
-  padding: 1.25rem;
+  padding: 1.25rem 1.25rem 0;
   margin-right: 1.5625rem;
-}
-.top {
-  z-index: 3;
-  transition: 0.5s ease transform;
-}
-.card.active {
-  z-index: 3;
-  transform: translateX(0);
-}
-.card.transition {
-  transition: 0.5s ease transform;
+  position: absolute;
+  z-index: 1;
+  transition: left 0.4s cubic-bezier(0.47, 0.13, 0.15, 0.89);
 }
 
 .card-info {
   border-top: 1px solid var(--grey);
   padding: 1.0625rem 0 1.25rem;
+  display: flex;
+  align-items: center;
 }
 .card-info i,
 .card-info span {
   color: var(--dark-grey);
+}
+.card-info i {
+  font-size: 1.5625rem;
+}
+.card-info span {
+  font-size: 1rem;
+  line-height: 1.2rem;
+  font-weight: 700;
+  margin-left: 5px;
+}
+
+@media (max-width: 767px) {
+
+.carousel {
+
+  padding: 3rem 0 4rem 2rem;
+}
+
 }
